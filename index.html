@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <!-- This line makes it fit your phone screen perfectly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Offline Chess AI</title>
     <link rel="stylesheet" href="style.css">
+    <!-- This loads the official chess rules and AI logic -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
 </head>
 <body>
-    <h2>Offline Chess AI</h2>
-    <div id="board"></div>
-    <p id="status">Your Turn (White)</p>
-    <button onclick="resetGame()">Restart Game</button>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <div class="header">
+        <h1>Chess vs AI</h1>
+        <div id="status" class="status">Your Turn (White)</div>
+    </div>
+    
+    <div id="board" class="board"></div>
+    
+    <button onclick="resetGame()" class="btn">Restart Game</button>
+    
     <script src="script.js"></script>
 </body>
 </html>
