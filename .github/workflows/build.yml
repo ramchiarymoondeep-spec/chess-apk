@@ -1,0 +1,31 @@
+name: Generate Chess APK
+on: [push]
+jobs:
+  android-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Create Native Wrapper Bundle
+        run: |
+          cordova create build-env com.offline.chess ChessAI
+          cd build-env
+          cordova platform add android
+          rm -rf www/*
+          cp -r ../index.html ../style.css ../script.js www/
+          cordova build android --no-telemetry
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: chess-game-apk
+          path: build-env/platforms/android/app/build/outputs/apk/debug/app-debug.apk
